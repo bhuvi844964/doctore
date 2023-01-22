@@ -7,51 +7,61 @@ cloudinary.config({
   api_secret: "IOpD-lHImhBkwf6QJgxbc2Gzx24",
 });
 
+
+let emailRegex = /^[a-z]{1}[a-z0-9._]{1,100}[@]{1}[a-z]{2,15}[.]{1}[a-z]{2,10}$/
+
+
 module.exports.createProfile = (req, res) => {
-  let file = req.files.image;
+  let file = req.files.profileImage;
 
   cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
     let data = req.body;
 
-    let {
-      fullName,
-      email,
-      phone,
-      password,
-      exprerience,
-      consultationFee,
-      spaseligation,
-      address,
-      education,
-    } = data;
+    let {fullName,email,phone,password,exprerience,consultationFee,specialization,address,education} = data;
 
-    if (
-      !fullName ||
-      !email ||
-      !phone ||
-      !password ||
-      !exprerience ||
-      !consultationFee ||
-      !spaseligation ||
-      !address ||
-      !education
-    ) {
-      return res.status(420).send({ message: "Please provide detail" });
-    }
-    product = new doctoreModel({
+  if (!fullName || fullName == "") {
+    return res.status(400).send({ Status: false, message: "Please provide fullName" })
+}
+  if (!email || email == "") {
+    return res.status(400).send({ Status: false, message: "Please provide email" })
+}
+if (!emailRegex.test(email)) {
+  return res.status(400).send({ Status: false, message: "Please enter valid email" })
+}
+  if (!phone || phone == "") {
+    return res.status(400).send({ Status: false, message: "Please provide phone number" })
+}
+  if (!password || password == "") {
+    return res.status(400).send({ Status: false, message: "Please provide password" })
+}
+  if (!exprerience || exprerience == "") {
+    return res.status(400).send({ Status: false, message: "Please provide exprerience" })
+}
+  if (!consultationFee || consultationFee == "") {
+    return res.status(400).send({ Status: false, message: "Please provide consultationFee" })
+}
+  if (!specialization || specialization == "") {
+    return res.status(400).send({ Status: false, message: "Please provide specialization" })
+}
+  if (!address || address == "") {
+    return res.status(400).send({ Status: false, message: "Please provide address" })
+}
+  if (!education || education == "") {
+    return res.status(400).send({ Status: false, message: "Please provide education" })
+}
+ let obj =  {
       fullName,
       email,
       phone,
-      image: result.url,
+      profileImage: result.url,
       password,
       consultationFee,
       exprerience,
-      spaseligation,
+      specialization,
       address,
       education,
-    });
-    product
-      .save()
+    };
+    let savedData =  doctoreModel.create(obj)
       .then((result) => {
         res.status(201).send({
           message: "success",

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const doctoreSchema = new mongoose.Schema(
   {
     fullName: {
@@ -28,11 +27,11 @@ const doctoreSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    spaseligation: {
+    specialization: {
       type: String,
       required: true,
     },
-    image: {
+    profileImage: {
       type: [],
       required: true,
     },
@@ -48,5 +47,14 @@ const doctoreSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+
+
+
+
+
+
+
+
 
 module.exports = mongoose.model("doctore", doctoreSchema);
