@@ -1,13 +1,12 @@
 const express = require('express');
+const multer = require('multer')
 require("./db/confige")
-const fileUpload = require("express-fileupload")
 const route = require("./routes/route")
 const app = express()
 
-
-app.use(fileUpload({useTempFiles : true}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 app.use('/', route); 
 

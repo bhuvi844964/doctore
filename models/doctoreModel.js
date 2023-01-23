@@ -5,15 +5,21 @@ const doctoreSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["Male", "Female"]
+    },
     email: {
       type: String,
       trim: true,
       lowercase: true,
-      unique: true,
+     unique: true,
     },
     password: {
       type: String,
       required: true,
+      trim: true
     },
     consultationFee: {
       type: Number,
@@ -32,7 +38,7 @@ const doctoreSchema = new mongoose.Schema(
       required: true,
     },
     profileImage: {
-      type: [],
+      type : [],
       required: true,
     },
     address: {
