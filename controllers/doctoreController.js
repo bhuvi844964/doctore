@@ -53,8 +53,8 @@ module.exports.createProfile = async function (req, res) {
       return res.status(400).send({ Status: false, message: "Please provide gender" })
   }
   if(gender){
-    if(!( ["Male", "Female"].includes(gender))) {
-      return res.status(400).send({ Status: false, message: "Gender must be Male and Female " })
+    if(!( ["Male", "Female", "Other"].includes(gender))) {
+      return res.status(400).send({ Status: false, message: "Gender must be Male , Female and Other " })
     }
 }
     if (!profileImage || profileImage == "") {
@@ -116,13 +116,17 @@ module.exports.login = async function (req, res) {
 module.exports.getDoctore = async function (req, res) {
   try {
     let doctoreFound = await doctoreModel.find(req.query);
-    res.status(200).send({ status: true, message: doctoreFound });
+    if (doctoreFound.length > 0) {
+      res.status(200).send({ status: true, message: doctoreFound });
+    } else {
+        res.status(404).send({ status: false, message: "No such data found " });
+    }
   } catch (error) {
     res.status(500).send({ status: false, error: error.message });
   }
 }; 
 
-
+ 
 
 module.exports.getDoctoreById = async function (req, res) {
   try {
@@ -131,8 +135,8 @@ module.exports.getDoctoreById = async function (req, res) {
           return res.status(400).send({ Status: false, message: "Please enter valid _id" })
   }
     let doctoreFound = await doctoreModel.findById(req.params);
-
-    res.status(200).send({ status: true, message: doctoreFound });
+      res.status(200).send({ status: true, message: doctoreFound });
+   
   } catch (error) {
     res.status(500).send({ status: false, error: error.message });
   }

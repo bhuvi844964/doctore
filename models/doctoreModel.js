@@ -5,28 +5,32 @@ const doctoreSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    gender: {
-      type: String,
-      required: true,
-      enum: ["Male", "Female"]
-    },
     email: {
       type: String,
       trim: true,
       lowercase: true,
-     unique: true,
+      unique: true,
     },
     password: {
       type: String,
       required: true,
       trim: true
     },
-    consultationFee: {
-      type: Number,
-      required: true,
-    },
     phone: {
       type: String,
+      required: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["Male", "Female" , "Other"]
+    },
+    profileImage: {
+      type : [],
+      required: true,
+    },
+    consultationFee: {
+      type: Number,
       required: true,
     },
     exprerience: {
@@ -35,10 +39,6 @@ const doctoreSchema = new mongoose.Schema(
     },
     specialization: {
       type: String,
-      required: true,
-    },
-    profileImage: {
-      type : [],
       required: true,
     },
     address: {
@@ -53,14 +53,6 @@ const doctoreSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-
-
-
-
-
-
-
 
 
 module.exports = mongoose.model("doctore", doctoreSchema);
