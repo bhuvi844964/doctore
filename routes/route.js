@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const doctorController = require("../controllers/doctoreController")
+const appointmentController = require("../controllers/appointmenController")
 const cors = require("cors");
 var fs = require('fs');
 const path = require("path");
@@ -31,6 +32,10 @@ router.post("/login", doctorController.login)
 router.get("/getDoctore", doctorController.getDoctore)
 
 router.get("/getDoctoreById/:_id", doctorController.getDoctoreById)
+
+
+
+router.post("/appointment", appointmentController.appointment)
 
 
 

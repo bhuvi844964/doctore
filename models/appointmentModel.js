@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const appointmentSchema = new mongoose.Schema({
    
-    doctoreId: {
+    doctorId: {
         type: ObjectId,
         required: true,
         ref: "doctore"
@@ -13,13 +13,13 @@ const appointmentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    weekAvailability: {
+    weekAvailability: [{
         type: String,
-        default: []
-    },
+        default: {}
+    }],
     sloteType: [{
         type:String,
-        enum:["weekAvailability", "appointmentDate", "allDay" ]
+        enum:["week", "date", "all" ]
     }],
     appointmentDate: {
         type:String,
