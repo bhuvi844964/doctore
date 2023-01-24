@@ -1,4 +1,4 @@
-const doctoreModel = require("../models/doctoreModel");
+const doctorModel = require("../models/doctorModel");
 const mongoose = require("mongoose")
 let emailRegex = /^[a-z]{1}[a-z0-9._]{1,100}[@]{1}[a-z]{2,15}[.]{1}[a-z]{2,10}$/
 
@@ -21,7 +21,7 @@ module.exports.createProfile = async function (req, res) {
     return res.status(400).send({ Status: false, message: "Please enter valid email" })
   }
   if (email) {
-    let checkemail = await doctoreModel.findOne({ email: email })
+    let checkemail = await doctorModel.findOne({ email: email })
 
     if (checkemail) {
         return res.status(400).send({ Status: false, message: "Please provide another email, this email has been used " })
@@ -77,7 +77,7 @@ module.exports.createProfile = async function (req, res) {
       education, 
       gender
     };
-      let savedData = await doctoreModel.create(obj)
+      let savedData = await doctorModel.create(obj)
       return res.status(201).send({ status : true, msg: savedData })
       
 }
@@ -98,8 +98,8 @@ module.exports.login = async function (req, res) {
   if (!password || password == "")
       return res.status(400).send({ Status: false, message: "You have to provide password to login " })
 
-    let doctore = await doctoreModel.findOne({ email });
-    let doctorepPassword = await doctoreModel.findOne({  password });
+    let doctore = await doctorModel.findOne({ email });
+    let doctorepPassword = await doctorModel.findOne({  password });
     if (!doctore)
       return res.status(401).send({
         status: false,
@@ -119,9 +119,9 @@ module.exports.login = async function (req, res) {
  
 
 
-module.exports.getDoctore = async function (req, res) {
+module.exports.getDoctor = async function (req, res) {
   try {
-    let doctoreFound = await doctoreModel.find(req.query);
+    let doctoreFound = await doctorModel.find(req.query);
     if (doctoreFound.length > 0) {
       res.status(200).send({ status: true, message: doctoreFound });
     } else {
@@ -134,13 +134,13 @@ module.exports.getDoctore = async function (req, res) {
 
  
 
-module.exports.getDoctoreById = async function (req, res) {
+module.exports.getDoctorById = async function (req, res) {
   try {
     if (req.params._id) {
       if (!mongoose.isValidObjectId(req.params._id))
           return res.status(400).send({ Status: false, message: "Please enter valid _id" })
   }
-    let doctoreFound = await doctoreModel.findById(req.params);
+    let doctoreFound = await doctorModel.findById(req.params);
       res.status(200).send({ status: true, message: doctoreFound });
    
   } catch (error) {

@@ -10,24 +10,39 @@ const appointmentSchema = new mongoose.Schema({
         ref: "doctore"
     },
     timeDuration: {
-        type: String,
+        type: Number,
         required: true,
     },
     weekAvailability: [{
         type: String,
-        default: {}
     }],
-    sloteType: [{
+
+    startDay: {
+        type:String
+    },
+    endDay: {
+        type:String
+    },
+
+    slotType: [{
         type:String,
-        enum:["week", "date", "all" ]
+        enum:["week", "date", "all" ],
+        required: true,
     }],
-    appointmentDate: {
+    appointmentDate: [{
         type:String,
         default: ""
-    },
-   timeSlote: [{
+    }],
+    slots: [{
         type:String,
     }],
+    startTime: {
+        type:String
+    },
+    endTime: {
+        type:String
+    },
+
     isAvailable: {
         type: Boolean,
         default: false

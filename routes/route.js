@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const doctorController = require("../controllers/doctoreController")
+const doctorController = require("../controllers/doctorController")
 const appointmentController = require("../controllers/appointmenController")
 const cors = require("cors");
 var fs = require('fs');
@@ -29,9 +29,9 @@ router.post("/registration" , upload, doctorController.createProfile)
 
 router.post("/login", doctorController.login)
 
-router.get("/getDoctore", doctorController.getDoctore)
+router.get("/getDoctore", doctorController.getDoctor)
 
-router.get("/getDoctoreById/:_id", doctorController.getDoctoreById)
+router.get("/getDoctoreById/:_id", doctorController.getDoctorById)
 
 
 
