@@ -31,7 +31,6 @@ module.exports.appointment = async function (req, res) {
     }
 }
 
-
 if(isAvailable === true){
 
 if ((allDay === true && slotType==="all") || (allDay === false && slotType==="week") || (allDay === false && slotType==="date"  ) ){
@@ -41,7 +40,7 @@ if ((allDay === true && slotType==="all") || (allDay === false && slotType==="we
       
       while(startTime < endTime){
           slots.push(new moment(startTime).format('HH:mm'));
-          startTime.add(req.body.timeDuration, 'minutes');
+          startTime.add(req.body.timeDuration, 'minutes').hours();
       }
 }
 
@@ -59,7 +58,6 @@ if(allDay === false && slotType==="week"){
 
 if(allDay === false && slotType==="date"){
   appointmentDate = moment(req.body.appointmentDate, "DD-MM-YYYY").format("DD-MM-YYYY");
-  
   }
 
 }else {
