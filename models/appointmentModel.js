@@ -32,6 +32,7 @@ const appointmentSchema = new mongoose.Schema({
     appointmentDate: [{
         type:String,
         default: ""
+
     }],
     slots: [{
         type:String,
@@ -56,3 +57,5 @@ const appointmentSchema = new mongoose.Schema({
 
 
 module.exports = mongoose.model('appointment', appointmentSchema) 
+
+

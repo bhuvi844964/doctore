@@ -37,6 +37,12 @@ router.get("/getDoctoreById/:_id", doctorController.getDoctorById)
 
 router.post("/appointment", appointmentController.appointment)
 
+router.get("/getWeekById/:doctorId", appointmentController.getWeekById)
+
+router.get("/getAlldayById/:doctorId", appointmentController.getAlldayById)
+
+router.get("/getdateById/:doctorId", appointmentController.getdateById)
+
 
 
 
