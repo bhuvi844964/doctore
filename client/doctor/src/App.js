@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Appointment from "./components/Appointment";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
-import About from "./components/About";
+import About from "./components/about/About";
 import Error from "./components/Error";
 
 

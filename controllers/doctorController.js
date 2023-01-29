@@ -98,7 +98,7 @@ module.exports.login = async function (req, res) {
       return res.status(400).send({ Status: false, message: "Please provide email" })
   }
   if (!password || password == "")
-      return res.status(400).send({ Status: false, message: "You have to provide password to login " })
+      return res.status(400).send({ Status: false, message: "Please provide password to login " })
 
     let doctor = await doctorModel.findOne({ email });
     let doctorPassword = await doctorModel.findOne({  password });

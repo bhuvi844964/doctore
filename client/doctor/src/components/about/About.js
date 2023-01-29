@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./about.css"
-// import bhuvi from "../images/bhuvi.jpeg";
-import { useNavigate , useParams } from "react-router-dom";
+import "./About.css"
+import bhuvi from "../../images/doctor.png";
+import { useNavigate , useParams , Link } from "react-router-dom";
 
 const About = () => {
   const navigate = useNavigate();
@@ -38,18 +38,19 @@ let params = useParams();
 
   return (
 
-<div className='login-container'>
+<div className='about-container'>
+        
 {userData !== null ? 
   userData.map(user => (
-    <div className='login-form'>
-        <h1>Doctor details</h1>
+    <div className='about-form' key={user.id} >
+          <img  src={bhuvi} style= {{width: "120px" , borderRadius:"20px"}} />
           <p>Name : {user.fullName}</p>
           <p>email : {user.email}</p>
           <p>phone : {user.phone}</p>
-          {/* <img variant="top" src={`/images/${user.profileImage}`}  /> */}
           <p>Exprerience : {user.exprerience}</p>
           <p>Consultation fees : {user.consultationFee}</p>
           <p>Specialization : {user.specialization}</p>
+          <Link to="/appointment"/>
           <p>education : {user.education}</p>
     </div>
     ))
