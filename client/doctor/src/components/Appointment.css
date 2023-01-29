@@ -1,0 +1,36 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th,
+  td {
+    padding: 1rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    font-weight: normal;
+    font-size: .875rem;
+    color: #666;
+    background: #eee;
+    position: sticky;
+    top: 0;
+  }
+  
+  @media(max-width: 500px) {
+    .heading {
+      display: none;
+    }
+    td {
+      display: block;
+    }
+    .slot-name {
+      background: #eee;
+    }
+  }
+  
+  .appointment-form {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'El Messiri', sans-serif;
+  }

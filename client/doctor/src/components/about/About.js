@@ -11,7 +11,6 @@ let params = useParams();
   const callAboutPage = async () => {
     try {
       const res = await fetch("/getDoctore", {
-        //this res is backend response , not from call back function
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -28,7 +27,7 @@ let params = useParams();
       }
     } catch (err) {
       console.log(err);
-      // navigate("/login");
+      //  navigate("/appointment");
     }
   };
 
@@ -50,7 +49,6 @@ let params = useParams();
           <p>Exprerience : {user.exprerience}</p>
           <p>Consultation fees : {user.consultationFee}</p>
           <p>Specialization : {user.specialization}</p>
-          <Link to="/appointment"/>
           <p>education : {user.education}</p>
     </div>
     ))

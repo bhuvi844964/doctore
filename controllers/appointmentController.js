@@ -32,11 +32,11 @@ module.exports.appointment = async function (req, res) {
 if(isAvailable === true){
 
 if ((allDay === true && slotType==="all") || (allDay === false && slotType==="week") || (allDay === false && slotType==="date"  ) ){
-       startTime = moment(req.body.startTime, "HH:mm");
-       endTime = moment(req.body.endTime, "HH:mm");
+       startTime = moment(req.body.startTime, "hh:mm A");
+       endTime = moment(req.body.endTime, "hh:mm A");
         slots = [];
       while(startTime < endTime){
-          slots.push(new moment(startTime).format('HH:mm'));
+          slots.push(new moment(startTime).format('LT'));
           startTime.add(req.body.timeDuration, 'minutes').hours();
       }
 }

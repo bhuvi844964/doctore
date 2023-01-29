@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import bhuvi from "../images/bhuvi.jpeg";
-import {  useParams } from "react-router-dom";
+import "./Appointment.css"
+import { useParams } from "react-router-dom";
 
 const Appointment = () => {
 
   const doctorId = useParams().doctorId
-  // const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [allData, setAllData] = useState({});
   const [allWeek, setWeekData] = useState({});
@@ -27,9 +26,9 @@ const Appointment = () => {
         credentials: "include",
       });
       const data = await res.json();
-      console.log(data.alldateAppointment);
-      console.log(data.allappointment);
-      console.log(data.alldateAppointment);
+      // console.log(data.alldateAppointment);
+      // console.log(data.allappointment);
+      // console.log(data.alldateAppointment);
 
       setUserData(data.message);
       setAllData(data.allappointment)
@@ -40,8 +39,7 @@ const Appointment = () => {
         throw error;
       }
     } catch (err) {
-      console.log(err); 
-      //  navigate("/login");
+      console.log(err);
     }
   };
 
@@ -50,26 +48,88 @@ const Appointment = () => {
   }, [doctorId]);
 
   return (
+    <div className='appointment-container'>
+      <div >
+        <h1 className='appointment-form'>{userData.fullName}</h1>
+        <table>
+          <tr class="heading">
+            <th>Days</th>
+            <th>Slots</th>
 
-<div className='login-container'>
-    <div className='login-form'>
-        <h1>Doctor Appointment</h1>
-          <p>Name : {userData.fullName}</p>
-          <p>email : {userData.email}</p>
-          {/* <img  src={`/images/${userData.profileImage}`} /> */}
-          {/* <p>slots : {allData.slots[0]}</p>
-          <p>slots : {allData.slots[1]}</p>
-          <p>slots : {allData.slots[2]}</p>
-           <p>slots : {allData.slots[3]}</p>
-          <p>slots : {allData.slots[4]}</p>
-          <p>slots : {allData.slots[5]}</p>
-          <p>slots : {allData.slots[6]}</p>  */}
+          </tr>
+          <tr>
+            <td class="slot-name">
+              SUN
+            </td>
+            <td style={{ wordSpacing: "1rem" }}  >{allData.slots}</td>
 
+          </tr>
+          <tr>
+            <td class="slot-name">
+
+              MON
+            </td>
+            <td>{allData.slots}</td>
+
+          </tr>
+          <tr>
+            <td class="slot-name">
+              TUE
+            </td>
+            <td>{allData.slots}</td>
+
+          </tr>
+          <tr>
+            <td class="slot-name">
+
+              WED
+            </td>
+            <td>{allData.slots}</td>
+
+          </tr>
+          <tr>
+            <td class="slot-name">
+
+              THU
+            </td>
+            <td>{allData.slots}</td>
+
+          </tr>
+          <tr>
+            <td class="slot-name">
+
+              FRI
+            </td>
+            <td>{allData.slots}</td>
+
+          </tr>
+          <tr>
+            <td class="slot-name">
+
+              SAT
+            </td>
+            <td>{allData.slots}</td>
+
+          </tr>
+        </table>
+
+      </div>
     </div>
-</div>
-
   );
 };
 
 export default Appointment;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
