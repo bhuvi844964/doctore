@@ -27,7 +27,7 @@ const doctorSchema = new mongoose.Schema(
     },
     profileImage: {
       type : [],
-      required: true,
+      // required: true,
     },
     consultationFee: {
       type: Number,
@@ -40,6 +40,7 @@ const doctorSchema = new mongoose.Schema(
     specialization: {
       type: String,
       required: true,
+      uppercase:true
     },
     address: {
       type: String,

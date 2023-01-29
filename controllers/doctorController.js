@@ -1,6 +1,7 @@
-const doctorModel = require("../models/doctorModel");
-
 const mongoose = require("mongoose")
+const doctorModel = require("../models/doctorModel");
+const appointmentModel = require("../models/appointmentModel");
+
 let emailRegex = /^[a-z]{1}[a-z0-9._]{1,100}[@]{1}[a-z]{2,15}[.]{1}[a-z]{2,10}$/
 
 
@@ -99,20 +100,20 @@ module.exports.login = async function (req, res) {
   if (!password || password == "")
       return res.status(400).send({ Status: false, message: "You have to provide password to login " })
 
-    let doctore = await doctorModel.findOne({ email });
-    let doctorepPassword = await doctorModel.findOne({  password });
-    if (!doctore)
+    let doctor = await doctorModel.findOne({ email });
+    let doctorPassword = await doctorModel.findOne({  password });
+    if (!doctor)
       return res.status(401).send({
         status: false,
-        msg: "email  is not corerct",
+        message: "email  is not corerct",
       });
-    if (!doctorepPassword)
+    if (!doctorPassword)
       return res.status(401).send({
         status: false,
-        msg: "password  is not corerct",
+        message: "password  is not corerct",
       });
 
-    res.status(200).send({ status: true, msg: " login successful" });
+    res.status(200).send({ status: true, message: " login successful" });
   } catch (error) {
     res.status(500).send({ status: false, error: error.message });
   }
@@ -122,9 +123,9 @@ module.exports.login = async function (req, res) {
 
 module.exports.getDoctor = async function (req, res) {
   try {
-    let doctoreFound = await doctorModel.find(req.query);
-    if (doctoreFound.length > 0) {
-      res.status(200).send({ status: true, message: doctoreFound });
+    let doctorFound = await doctorModel.find(req.query).select({ createdAt: 0, updatedAt: 0, __v: 0});
+    if (doctorFound.length > 0) {
+      res.status(200).send( doctorFound );
     } else {
         res.status(404).send({ status: false, message: "No such data found " });
     }
@@ -137,16 +138,28 @@ module.exports.getDoctor = async function (req, res) {
 
 module.exports.getDoctorById = async function (req, res) {
   try {
-    if (req.params._id) {
-      if (!mongoose.isValidObjectId(req.params._id))
-          return res.status(400).send({ Status: false, message: "Please enter valid _id" })
+
+    let doctorId = req.params.doctorId;
+
+
+    if (doctorId) {
+      if (!mongoose.isValidObjectId(doctorId))
+          return res.status(400).send({ Status: false, message: "Please enter valid doctorId" })
   }
-    let doctoreFound = await doctorModel.findById(req.params);
-      res.status(200).send({ status: true, message: doctoreFound });
-   
+    let doctorFound = await doctorModel.findOne({ _id: doctorId }).select({ createdAt: 0, updatedAt: 0, __v: 0});
+
+        let allappointment = await appointmentModel.findOne({  isAvailable: true , slotType:"all" , allDay:true  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
+ 
+        let alldateAppointment = await appointmentModel.findOne({  isAvailable: true , slotType:"date" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
+
+        let allweekappointment = await appointmentModel.findOne({  isAvailable: true , slotType:"week" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
+
+
+    res.status(200).send({ status: true, message: doctorFound , allappointment ,alldateAppointment , allweekappointment });
+ 
   } catch (error) {
     res.status(500).send({ status: false, error: error.message });
-  }
+  } 
 }; 
 
 

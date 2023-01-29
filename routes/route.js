@@ -31,7 +31,7 @@ router.post("/login", doctorController.login)
 
 router.get("/getDoctore", doctorController.getDoctor)
 
-router.get("/getDoctoreById/:_id", doctorController.getDoctorById)
+router.get("/getDoctoreById/:doctorId", doctorController.getDoctorById)
 
 
 
