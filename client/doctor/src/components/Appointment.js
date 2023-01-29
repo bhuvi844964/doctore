@@ -52,20 +52,21 @@ const Appointment = () => {
       <div >
         <h1 className='appointment-form'>{userData.fullName}</h1>
         <table>
-          <tr class="heading">
+          <tr className="heading">
             <th>Days</th>
             <th>Slots</th>
 
           </tr>
           <tr>
-            <td class="slot-name">
+            <td className="slot-name">
               SUN
             </td>
-            <td style={{ wordSpacing: "1rem" }}  >{allData.slots}</td>
+            <td>{allData.slots}</td>
+            {/* <td style={{ wordSpacing: "1rem" }}  >{allData.slots}</td> */}
 
           </tr>
           <tr>
-            <td class="slot-name">
+            <td className="slot-name">
 
               MON
             </td>
@@ -73,14 +74,14 @@ const Appointment = () => {
 
           </tr>
           <tr>
-            <td class="slot-name">
+            <td className="slot-name">
               TUE
             </td>
             <td>{allData.slots}</td>
 
           </tr>
           <tr>
-            <td class="slot-name">
+            <td className="slot-name">
 
               WED
             </td>
@@ -88,7 +89,7 @@ const Appointment = () => {
 
           </tr>
           <tr>
-            <td class="slot-name">
+            <td className="slot-name">
 
               THU
             </td>
@@ -96,7 +97,7 @@ const Appointment = () => {
 
           </tr>
           <tr>
-            <td class="slot-name">
+            <td className="slot-name">
 
               FRI
             </td>
@@ -104,7 +105,7 @@ const Appointment = () => {
 
           </tr>
           <tr>
-            <td class="slot-name">
+            <td className="slot-name">
 
               SAT
             </td>
