@@ -20,7 +20,7 @@ table {
   @media(max-width: 500px) {
     .heading {
       display: none;
-    }
+    } 
     td {
       display: block;
     }
@@ -32,5 +32,10 @@ table {
   .appointment-form {
     text-align: center;
     font-size: 2.5rem;
+    font-family: 'El Messiri', sans-serif;
+  }
+  .appoint-form {
+    text-align: center;
+    font-size: 1.5rem;
     font-family: 'El Messiri', sans-serif;
   }

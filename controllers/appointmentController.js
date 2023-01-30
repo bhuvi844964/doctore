@@ -41,10 +41,19 @@ if ((allDay === true && slotType==="all") || (allDay === false && slotType==="we
       }
 }
 
+if (allDay === false && slotType==="all"){
+  return res.status(400).send({ Status: false, message: " Please set all day true " })  
+}
+if (allDay === true && slotType==="week"){
+  return res.status(400).send({ Status: false, message: " Please set all day false " })  
+}
+if (allDay === true && slotType==="date"){
+  return res.status(400).send({ Status: false, message: " Please set all day false " })  
+}
 
 if(allDay === false && slotType==="week"){
   startDay = moment(req.body.startDay, 'ddd');
-  endDay = moment(req.body.endDay, 'ddd');
+  endDay = moment(req.body.endDay, 'ddd'); 
    weekAvailability = [];
    
   while(startDay <= endDay){

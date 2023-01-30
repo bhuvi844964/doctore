@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css"
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import Appointment from "./components/Appointment";
+import Appointment from "./components/appointment/Appointment";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import About from "./components/about/About";
@@ -18,7 +18,6 @@ export default function App() {
     <>
       <Navbar />
       <Routes>
-        {/* nested routing ek hee route ke under sabhi ko rakhna */}
         <Route path="/" element={<Home />} exact />
         <Route path="/about" element={<About />} />
         <Route path="/appointment/:doctorId" element={<Appointment />} />

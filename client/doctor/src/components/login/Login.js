@@ -1,55 +1,64 @@
-import React , { useState } from 'react'
-import { useNavigate , Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-import "./Login.css"
+import "./Login.css";
 
 const Login = () => {
-
   const navigate = useNavigate();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const loginUser = async (e) => {
-    e.preventDefault();
+  const loginUser = async () => {
+    // e.preventDefault();
 
     const res = await fetch("/login", {
-      method: "POST", 
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email,
-        password
+        password,
       }),
     });
 
     const data = await res.json();
 
-    if (data.status === 200 ) {
-      
+    if (data.status === 200) {
       window.alert("login Successful");
-      
     } else {
-      alert(data.message)
-      if(data.message === " login successful" ){
+      alert(data.message);
+      if (data.message === " login successful") {
         navigate("/");
       }
-       
     }
-    
   };
 
   return (
-    <div className='login-container'>
-    <div className='login-form'>
+    <div className="login-container">
+      <div className="login-form">
         <h1>Login</h1>
-        <input onChange={(e)=> setEmail(e.target.value)} type='text' name='email' placeholder='Email' value={email}/>
-        <input onChange={(e)=> setPassword(e.target.value)} type='passwprd' name='password' placeholder='Password' value={password}/>
-        <Link to = "/Signup">Not Registered?</Link>
-        <button className='login-button' onClick={loginUser}>Login</button>
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          name="email"
+          placeholder="Email"
+          value={email}
+        />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          type="passwprd"
+          name="password"
+          placeholder="Password"
+          value={password}
+        />
+        <Link to="/Signup">Not Registered?</Link>
+        <button className="login-button" onClick={loginUser}>
+          Login
+        </button>
+      </div>
     </div>
-</div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

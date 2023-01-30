@@ -34,9 +34,9 @@ const appointmentSchema = new mongoose.Schema({
         default: ""
 
     }],
-    slots: [{
+    slots: {
         type:String,
-    }],
+    },
     startTime: {
         type:String
     },
