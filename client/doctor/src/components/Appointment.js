@@ -17,7 +17,6 @@ const Appointment = () => {
   const callAboutPage = async () => {
     try {
       const res = await fetch(`/getDoctoreById/${doctorId}`, {
-        //this res is backend response , not from call back function
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -26,9 +25,9 @@ const Appointment = () => {
         credentials: "include",
       });
       const data = await res.json();
-      // console.log(data.alldateAppointment);
-      // console.log(data.allappointment);
-      // console.log(data.alldateAppointment);
+      console.log(data.alldateAppointment);
+      console.log(data.allappointment);
+      console.log(data.alldateAppointment);
 
       setUserData(data.message);
       setAllData(data.allappointment)

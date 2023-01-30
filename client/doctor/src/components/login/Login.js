@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     const res = await fetch("/login", {
-      method: "POST",
+      method: "POST", 
       headers: {
         "Content-Type": "application/json",
       },
