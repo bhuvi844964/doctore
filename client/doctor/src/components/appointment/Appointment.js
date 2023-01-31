@@ -67,18 +67,17 @@ const Appointment = ( ) => {
             <th >FRI</th>
             <th >SAT</th>
    </tr>
-   {allDate && allDate.appointmentDate && allDate.appointmentDate[0] && allDate.appointmentDate[1] &&  allDate.appointmentDate[2] && allDate.appointmentDate[3] &&allDate.appointmentDate[4] &&  allDate.appointmentDate[5] && allDate.appointmentDate[6] &&
-  
+   
    <tr>
-            <th >{allDate.appointmentDate[0]}</th>
-            <th >{allDate.appointmentDate[1]}</th>
-            <th >{allDate.appointmentDate[2]}</th>
-            <th >{allDate.appointmentDate[3]}</th>
-            <th >{allDate.appointmentDate[4]}</th>
-            <th >{allDate.appointmentDate[5]}</th>
-            <th >{allDate.appointmentDate[6]}</th>
+            <th >29-02-2023</th>
+            <th >30-01-2023</th>
+            <th >31-01-2023</th>
+            <th >01-02-2023</th>
+            <th >02-02-2023</th>
+            <th >03-02-2023</th>
+            <th >04-02-2023</th>
    </tr>
-   }
+  
  </thead>
  <tbody>
  {allData && allData.slots && allData.slots[0] && 

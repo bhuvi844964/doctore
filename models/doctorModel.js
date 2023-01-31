@@ -27,7 +27,7 @@ const doctorSchema = new mongoose.Schema(
     },
     profileImage: {
       type : [],
-      // required: true,
+
     },
     consultationFee: {
       type: Number,
@@ -56,4 +56,4 @@ const doctorSchema = new mongoose.Schema(
 );
 
 
-module.exports = mongoose.model("doctore", doctorSchema);
+module.exports = mongoose.model("doctor", doctorSchema);
