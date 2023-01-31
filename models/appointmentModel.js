@@ -24,19 +24,19 @@ const appointmentSchema = new mongoose.Schema({
         type:String
     },
 
-    slotType: [{
+    slotType: {
         type:String,
         enum:["week", "date", "all" ],
         required: true,
-    }],
+    },
     appointmentDate: [{
         type:String,
         default: ""
 
     }],
-    slots: {
+    slots: [{
         type:String,
-    },
+    }],
     startTime: {
         type:String
     },
@@ -52,6 +52,16 @@ const appointmentSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+
+    startDate: {
+        type:String
+    },
+    endDate: {
+        type:String
+    },
+
+
+
  
 }, { timestamps: true });
 

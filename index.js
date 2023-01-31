@@ -14,8 +14,8 @@ app.use("/images", express.static("./images"))
 app.use('/', route); 
 
 
-app.listen(process.env.PORT || 4000, function () {
-    console.log('Express app running on port ' + (process.env.PORT || 4000))
+app.listen( 4000, function () {
+    console.log('Express app running on port ' +  4000)
 });
 
 

@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const loginUser = async () => {
-    // e.preventDefault();
+   
 
     const res = await fetch("/login", {
       method: "POST",
@@ -47,7 +47,7 @@ const Login = () => {
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
-          type="passwprd"
+          type="password"
           name="password"
           placeholder="Password"
           value={password}

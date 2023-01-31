@@ -8,7 +8,7 @@ const moment = require("moment");
 module.exports.appointment = async function (req, res) {
     try {
       let data = req.body;
-      let {doctorId,timeDuration,weekAvailability,slotType,isAvailable,allDay,appointmentDate ,slots, startTime ,endTime , startDay , endDay} = data;
+      let {doctorId,timeDuration,weekAvailability,slotType,isAvailable,allDay,appointmentDate ,slots, startTime ,endTime , startDay , endDay ,  startDate , endDate} = data;
 
       if (!doctorId || doctorId == "")
       return res.status(400).send({ Status: false, message: "Please provide doctorId " })
@@ -32,11 +32,11 @@ module.exports.appointment = async function (req, res) {
 if(isAvailable === true){
 
 if ((allDay === true && slotType==="all") || (allDay === false && slotType==="week") || (allDay === false && slotType==="date"  ) ){
-       startTime = moment(req.body.startTime, "hh:mm A");
-       endTime = moment(req.body.endTime, "hh:mm A");
+       startTime = moment(req.body.startTime, "HH:mm");
+       endTime = moment(req.body.endTime, "HH:mm");
         slots = [];
       while(startTime < endTime){
-          slots.push(new moment(startTime).format('LT'));
+          slots.push(new moment(startTime).format('HH:mm'));
           startTime.add(req.body.timeDuration, 'minutes').hours();
       }
 }
@@ -66,10 +66,18 @@ if(allDay === false && slotType==="week"){
   return res.status(400).send({ status: false, message: "please check availability" })
 }
 
-  if(allDay === false && slotType==="date" ){
-     appointmentDate = []
-     appointmentDate.push(moment(req.body.appointmentDate, "DD-MM-YYYY").format("DD-MM-YYYY"))
+
+    startDate = moment(req.body.startDate, "DD-MM-YYYY");
+    endDate = moment(req.body.endDate, "DD-MM-YYYY"); 
+    appointmentDate = []
      
+    while(startDate <= endDate){
+      appointmentDate.push(new moment(startDate).format("DD-MM-YYYY"));
+      startDate.add( 1 , 'days')
+ 
+    }
+    
+    
       let obj =  { 
         doctorId,
         timeDuration,
@@ -78,29 +86,13 @@ if(allDay === false && slotType==="week"){
         isAvailable,
         allDay,
         appointmentDate:appointmentDate,
-        slots : slots ,
+        slots : slots , startTime ,endTime , startDay , endDay ,startDate , endDate
       };
    
         let savedData = await appointmentModel.create(obj)
-        return res.status(201).send({ status : true, msg: savedData })
-    }
-    else{
-
-      let obj =  { 
-        doctorId,
-        timeDuration,
-        weekAvailability :weekAvailability,
-        slotType ,
-        isAvailable,
-        allDay,
-        appointmentDate:'',
-        slots : slots ,
-      };
-   
-        let savedData = await appointmentModel.create(obj)
-        return res.status(201).send({ status : true, msg: savedData })
+        return res.status(201).send({ status : true, message: savedData })
     }   
-  }
+  
   catch (error) {
     res.status(500).send({ status: false, error: error.message })
   }

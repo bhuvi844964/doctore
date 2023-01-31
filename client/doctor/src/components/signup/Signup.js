@@ -75,10 +75,10 @@ const Signup = () => {
         <div className='signup-form'>
             <h1>Sign Up</h1>
            
-            <input onChange={handleChange} type='text' name='fullName' placeholder='First Name' value={signupDetails.fullName}/>
+            <input onChange={handleChange} type='text' name='fullName' placeholder='Full Name' value={signupDetails.fullName}/>
             <input onChange={handleChange} type='text' name='email' placeholder='Email' value={signupDetails.email}/>
             <input onChange={handleChange} type='text' name='phone' placeholder='Phone' value={signupDetails.phone}/>
-            <input onChange={handleChange} type='text' name='password' placeholder='Password' value={signupDetails.password}/>
+            <input onChange={handleChange} type='password' name='password' placeholder='Password' value={signupDetails.password}/>
             <input onChange={handleChange} type='text' name='gender' placeholder='gender' value={signupDetails.gender}/>
             <input onChange={handleChange} type='text' name='exprerience' placeholder='Exprerience' value={signupDetails.exprerience}/>
             <input onChange={handleChange} type='text' name='consultationFee' placeholder='Consultation fees' value={signupDetails.consultationFee}/>
@@ -86,7 +86,7 @@ const Signup = () => {
             <input onChange={handleChange} type='text' name='education' placeholder='education' value={signupDetails.education}/>
             <input onChange={handleChange} type='text' name='address' placeholder='address' value={signupDetails.address}/>
             <input onChange={handlePhoto} type='file' name='profileImage'/>
-            {!isClicked?<Link to="/login">Already Registed?</Link>:<Link to="/signup" onClick={()=>setIsClicked(!isClicked)} >Back</Link> }
+            {!isClicked?<Link to="/login">Already Registered?</Link>:<Link to="/signup" onClick={()=>setIsClicked(!isClicked)} >Back</Link> }
             
             {!isClicked?<button onClick={()=>setIsClicked(!isClicked)} >Register</button>:<button onClick={handleSubmit} >Register</button>}
         </div>
