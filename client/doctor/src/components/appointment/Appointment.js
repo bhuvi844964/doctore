@@ -186,8 +186,6 @@ const Appointment = ( ) => {
     <td >{allData.slots[7]}</td>
   </tr>
 }
-
-   
  </tbody>
 </table></div>
       
