@@ -29,7 +29,7 @@ const Login = () => {
     } else {
       alert(data.message);
       if (data.message === " login successful") {
-        navigate("/");
+        navigate("/about");
       }
     }
   };

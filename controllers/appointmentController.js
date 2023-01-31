@@ -150,7 +150,7 @@ if(allDay === false && slotType==="week"){
     
         let allappointment = await appointmentModel.findOne({ doctorId:doctorId , isAvailable: true , slotType:"date" , allDay:false  }).lean()
         if (!allappointment) {
-            return res.status(400).send({ status: false, message: "slot not found" })
+            return res.status(400).send({ status: false, message: "slot not found" }) 
 
         }
         return res.status(200).send({ status: true, message: 'appointment list',data: allappointment })

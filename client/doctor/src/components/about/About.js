@@ -58,7 +58,7 @@ const About = () => {
           </div>
         ))
       ) : (
-        <div>Loading posts...</div>
+        <div>Loading posts...</div> 
       )}
      
     </div>

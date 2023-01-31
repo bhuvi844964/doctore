@@ -8,6 +8,6 @@ root.render(
   <React.Fragment>
     <BrowserRouter>
       <App />
-    </BrowserRouter>
+    </BrowserRouter> 
   </React.Fragment> 
 ); 
