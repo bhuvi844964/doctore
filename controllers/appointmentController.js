@@ -17,8 +17,8 @@ module.exports.appointment = async function (req, res) {
             return res.status(400).send({ Status: false, message: "Please enter valid doctorId " })
     if (!timeDuration || timeDuration == "")
     return res.status(400).send({ Status: false, message: "Please provide timeDuration " })
-    if (!appointmentDate || appointmentDate == "")
-    return res.status(400).send({ Status: false, message: "Please provide appointmentDate " })
+    // if (!appointmentDate || appointmentDate == "")
+    // return res.status(400).send({ Status: false, message: "Please provide appointmentDate " })
    
     if (!slotType || slotType == "") {
       return res.status(400).send({ Status: false, message: "Please provide slotType" })
@@ -66,7 +66,7 @@ if(allDay === false && slotType==="week"){
   return res.status(400).send({ status: false, message: "please check availability" })
 }
 
-
+if(allDay === false && slotType==="date"){
     startDate = moment(req.body.startDate, "DD-MM-YYYY");
     endDate = moment(req.body.endDate, "DD-MM-YYYY"); 
     appointmentDate = []
@@ -76,7 +76,7 @@ if(allDay === false && slotType==="week"){
       startDate.add( 1 , 'days')
  
     }
-    
+  }
     
       let obj =  { 
         doctorId,
@@ -86,7 +86,7 @@ if(allDay === false && slotType==="week"){
         isAvailable,
         allDay,
         appointmentDate:appointmentDate,
-        slots : slots , startTime ,endTime , startDay , endDay ,startDate , endDate
+        slots : slots 
       };
    
         let savedData = await appointmentModel.create(obj)
