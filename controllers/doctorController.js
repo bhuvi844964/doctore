@@ -147,18 +147,18 @@ module.exports.getDoctorById = async function (req, res) {
   }
     let doctorFound = await doctorModel.findOne({ _id: doctorId }).select({ createdAt: 0, updatedAt: 0, __v: 0});
 
-        let allappointment = await appointmentModel.findOne({ doctorId: doctorId, isAvailable: true , slotType:"all" , allDay:true  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
+        let allappointment = await appointmentModel.find({ doctorId: doctorId, isAvailable: true , slotType:"all" , allDay:true  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
  
         let alldateAppointment = await appointmentModel.findOne({ doctorId: doctorId , isAvailable: true , slotType:"date" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
 
-        let allweekappointment = await appointmentModel.findOne({ doctorId: doctorId , isAvailable: true , slotType:"week" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
+        let allweekappointment = await appointmentModel.find({ doctorId: doctorId , isAvailable: true , slotType:"week" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
 
 
     res.status(200).send({ status: true, message: doctorFound , allappointment ,alldateAppointment , allweekappointment });
  
   } catch (error) {
-    res.status(500).send({ status: false, error: error.message });
-  } 
+    res.status(500).send({ status: false, error: error.message }); 
+  }  
 }; 
 
 

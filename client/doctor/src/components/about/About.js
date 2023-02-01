@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./About.css";
 import bhuvi from "../../images/doctor.png";
-import { useNavigate  } from "react-router-dom";
+import {  NavLink  } from "react-router-dom";
 
 const About = () => {
-  const navigate = useNavigate();
+
  
   const [userData, setUserData] = useState(null);
 
 
-  function onLinkClick(e) {
-    e.preventDefault();
-       navigate("/appointment/:doctorId");
- }
 
   const callAboutPage = async () => {
  
@@ -26,7 +22,6 @@ const About = () => {
         credentials: "include",
       });
       const data = await res.json();
-      console.log(data);
       setUserData(data);
       if (!res.status === 200) { 
         const error = new Error(res.error);
@@ -54,8 +49,10 @@ const About = () => {
             <p>Consultation fees : {user.consultationFee}</p>
             <p>Specialization : {user.specialization}</p>
             <p>education : {user.education}</p>
-            <button style={{ width: "120px", borderRadius: "20px" }} onClick={onLinkClick} >appointment</button>
-          </div>
+
+            <NavLink  to={`/appointment/${user._id}`}><button style={{ width: "120px", borderRadius: "20px" }}  > appointment</button></NavLink>
+            
+          </div> 
         ))
       ) : (
         <div>Loading posts...</div> 

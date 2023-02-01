@@ -13,9 +13,10 @@ const appointmentSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    weekAvailability: [{
+    weekAvailability: {
         type: String,
-    }],
+        default: ""
+    },
 
     startDay: {
         type:String
@@ -29,11 +30,11 @@ const appointmentSchema = new mongoose.Schema({
         enum:["week", "date", "all" ],
         required: true,
     },
-    appointmentDate: [{
+    appointmentDate: {
         type:String,
         default: ""
 
-    }],
+    },
     slots: [{
         type:String,
     }],

@@ -8,7 +8,7 @@ const moment = require("moment");
 module.exports.appointment = async function (req, res) {
     try {
       let data = req.body;
-      let {doctorId,timeDuration,weekAvailability,slotType,isAvailable,allDay,appointmentDate ,slots, startTime ,endTime , startDay , endDay ,  startDate , endDate} = data;
+      let {doctorId,timeDuration,weekAvailability,slotType,isAvailable,allDay,appointmentDate ,slots, startTime ,endTime  ,  startDate , endDate} = data;
 
       if (!doctorId || doctorId == "")
       return res.status(400).send({ Status: false, message: "Please provide doctorId " })
@@ -52,31 +52,25 @@ if (allDay === true && slotType==="date"){
 }
 
 if(allDay === false && slotType==="week"){
-  startDay = moment(req.body.startDay, 'ddd');
-  endDay = moment(req.body.endDay, 'ddd'); 
-   weekAvailability = [];
-   
-  while(startDay <= endDay){
-     weekAvailability.push(new moment(startDay).format('ddd'));
-     startDay.add(1, 'days');
-  }
-  }
+  weekAvailability = moment(req.body.weekAvailability, 'ddd').format('ddd');
 
-}else {
+  } 
+
+}else { 
   return res.status(400).send({ status: false, message: "please check availability" })
 }
 
-if(allDay === false && slotType==="date"){
-    startDate = moment(req.body.startDate, "DD-MM-YYYY");
-    endDate = moment(req.body.endDate, "DD-MM-YYYY"); 
-    appointmentDate = []
+// if(allDay === false && slotType==="date"){
+//     startDate = moment(req.body.startDate, "DD-MM-YYYY");
+//     endDate = moment(req.body.endDate, "DD-MM-YYYY"); 
+//     appointmentDate = []
      
-    while(startDate <= endDate){
-      appointmentDate.push(new moment(startDate).format("DD-MM-YYYY"));
-      startDate.add( 1 , 'days')
+//     while(startDate <= endDate){
+//       appointmentDate.push(new moment(startDate).format("DD-MM-YYYY"));
+//       startDate.add( 1 , 'days')
  
-    }
-  }
+//     }
+//   }
     
       let obj =  { 
         doctorId,
@@ -86,7 +80,8 @@ if(allDay === false && slotType==="date"){
         isAvailable,
         allDay,
         appointmentDate:appointmentDate,
-        slots : slots 
+        slots : slots ,
+         startDate , endDate
       };
    
         let savedData = await appointmentModel.create(obj)
