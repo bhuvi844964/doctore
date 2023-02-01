@@ -66,8 +66,8 @@ const Appointment = ( ) => {
   // console.log(allWeek.weekAvailability === "Sun");
   // console.log(allWeek[0].slotType[0] === "week");
  
-  // console.log(allWeek);
-  // console.log(allWeek1);
+  // console.log(allDate.slotType === "date");
+  console.log(allDate);
   // console.log(allWeek2);
   // console.log(allWeek3);
   // console.log(allWeek4);
@@ -185,6 +185,7 @@ const Appointment = ( ) => {
 
 
 
+
 {allWeek && allWeek.slotType === "week" &&
  <table>
  <thead>
@@ -280,6 +281,22 @@ const Appointment = ( ) => {
  </tbody>
 </table>
 }
+
+
+
+{allDate && allDate.slotType === "date" &&
+ <table>
+ <thead>
+
+   <tr>
+            <th >{allDate.appointmentDate}</th>
+   </tr>
+
+ </thead>
+
+</table>
+}
+
 
 
 </div>

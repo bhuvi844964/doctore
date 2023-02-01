@@ -143,7 +143,7 @@ if(allDay === false && slotType==="week"){
         if (!mongoose.isValidObjectId(doctorId))
         return res.status(400).send({ Status: false, message: "Please enter valid doctorId " })
     
-        let allappointment = await appointmentModel.findOne({ doctorId:doctorId , isAvailable: true , slotType:"date" , allDay:false  }).lean()
+        let allappointment = await appointmentModel.find({ doctorId:doctorId , isAvailable: true , slotType:"date" , allDay:false  }).lean()
         if (!allappointment) {
             return res.status(400).send({ status: false, message: "slot not found" }) 
 
