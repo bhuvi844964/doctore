@@ -149,7 +149,7 @@ module.exports.getDoctorById = async function (req, res) {
 
         let allappointment = await appointmentModel.find({ doctorId: doctorId, isAvailable: true , slotType:"all" , allDay:true  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
  
-        let alldateAppointment = await appointmentModel.findOne({ doctorId: doctorId , isAvailable: true , slotType:"date" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
+        let alldateAppointment = await appointmentModel.find({ doctorId: doctorId , isAvailable: true , slotType:"date" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
 
         let allweekappointment = await appointmentModel.find({ doctorId: doctorId , isAvailable: true , slotType:"week" , allDay:false  }).select({ createdAt: 0, updatedAt: 0, __v: 0}).lean()
 

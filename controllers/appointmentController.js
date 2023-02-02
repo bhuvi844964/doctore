@@ -35,10 +35,15 @@ if ((allDay === true && slotType==="all") || (allDay === false && slotType==="we
        startTime = moment(req.body.startTime, "HH:mm");
        endTime = moment(req.body.endTime, "HH:mm");
         slots = [];
-      while(startTime < endTime){
+      while(startTime < endTime ){
+        
           slots.push(new moment(startTime).format('HH:mm'));
           startTime.add(req.body.timeDuration, 'minutes').hours();
+        
       }
+if((startTime-endTime)/timeDuration !== 0){
+console.log(slots.pop())
+}
 }
 
 if (allDay === false && slotType==="all"){
